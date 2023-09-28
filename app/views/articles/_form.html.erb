@@ -1,0 +1,78 @@
+<%= form_with model: article do |form| %>
+  <% if form.object.errors.any? %>
+  <div>
+    <% form.object.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <%end%>
+
+  <div>
+    <%= text_field_with_label form, :title %>
+  </div>
+
+  <div>
+    <%= text_area_with_label form, :body %>
+  </div>
+  <!--<div>
+     #fields_for :body, @article.body do |body_form| %>
+    #body_form.text_field :body %>
+     #end %>
+  </div>-->
+
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+  </div>
+    <br>
+    <h1>Select Timezone</h1>
+    <%= form.time_zone_select :time_zone %>
+    <h1>Select BirthDate</h1
+    <%= form.datetime_select :"Select Date and Time"  %>
+
+  <div>
+    <br>
+    <h1>Choose Article from Database</h1> 
+    <%= form.select :article_id, Article.order(:title).map { |article| [article.title, article.id] } %>
+    <br>
+    <h1>Choose Article from Database</h1>
+    <%= form.collection_select :article_id, Article.order(:title), :id, :title %>
+    <h1>Collection Check Boxes</h1>
+    <%= form.file_field :file %>
+    
+  </div>
+  <div>
+    <br>
+    <h1>Select Box</h1>
+    <%= form.select :city, [["United States", "USA"], ["Canada", "CAN"], ["Pakistan", "PAK"]], selected: 'PAK' %>
+    <br>
+  </div>
+  <div>
+    <br>
+    <h1>Grouped Select Box</h1>
+    <%= form.select :city, {
+      "USA" => [["Los Angels", "LA"], ["California", "CAL"]],
+      "Pakistan"=> [["Lahore", "LAH"], ["Karachi","KAR"], ["Islamabad", "ISL"]]
+    } , selected: 'KAR' %>
+    <br>
+  </div>
+  <div>
+    <h1>Check Box</h1>
+    <%= form.check_box :pet_dog %>
+    <%= form.label :pet_dog, "I own a dog" %><br>
+    <%= form.check_box :pet_cat %>
+    <%= form.label :pet_cat, "I own a pet cat" %>
+    <br>
+  </div>
+  <div>
+    <h1>Radio Buttons</h1>
+    <%= form.radio_button :age, "child" %>
+    <%= form.label :age_child, "I am younger than 21" %>
+    <%= form.radio_button :age, "adult" %>
+    <%= form.label :age_adult, "I am over 21" %>
+    <br>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
