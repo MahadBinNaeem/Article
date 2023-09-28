@@ -6,11 +6,9 @@
     <% end %>
   </div>
   <%end%>
-
   <div>
     <%= text_field_with_label form, :title %>
   </div>
-
   <div>
     <%= text_area_with_label form, :body %>
   </div>
@@ -19,7 +17,6 @@
     #body_form.text_field :body %>
      #end %>
   </div>-->
-
   <div>
     <%= form.label :status %><br>
     <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
@@ -29,7 +26,6 @@
     <%= form.time_zone_select :time_zone %>
     <h1>Select BirthDate</h1
     <%= form.datetime_select :"Select Date and Time"  %>
-
   <div>
     <br>
     <h1>Choose Article from Database</h1> 
@@ -39,7 +35,6 @@
     <%= form.collection_select :article_id, Article.order(:title), :id, :title %>
     <h1>Collection Check Boxes</h1>
     <%= form.file_field :file %>
-    
   </div>
   <div>
     <br>
